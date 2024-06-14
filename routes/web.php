@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeController2;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+route::get('/',[HomeController::class,'home']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -18,3 +21,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth','admin']);
+
+Route::get('reviewer/dashboard',[HomeController2::class,'index']);
