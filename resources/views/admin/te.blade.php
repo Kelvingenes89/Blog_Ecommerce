@@ -2,6 +2,21 @@
 <html>
   <head> 
     @include('admin.css')
+    
+    <style type="text/css">
+        input[type='text']{
+            width: 400px;
+            height: 50px;
+        }
+       .div_deg{
+        dispay:flex;
+        justify-content: center;
+        align-items: center;
+        margin: 30px;
+
+       }
+
+
   </head> 
   <body>
    @include('admin.header')
@@ -13,7 +28,17 @@
         <div class="page-header">
           <div class="container-fluid">
             
-            @include('admin.body')
+         <div class".div_deg >
+            <form>
+
+                <input type="text" name="category">
+                <input class="btn btn-primary" type="submit" value"Add Category">
+
+            </form>
+        </div>
+
+
+            
       </div>
     </div>
     <!-- JavaScript files-->
