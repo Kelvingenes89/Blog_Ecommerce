@@ -11,9 +11,13 @@ Route::get('/', function () {
 });
 
 route::get('/',[HomeController::class,'home']);
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+route::get('/dashboard',[HomeController::class,'login_home'])->middleware(['auth', 'verified'])->name('dashboard');;
+
+
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -46,5 +50,24 @@ Route::get('add_product',[AdminController::class,'add_product'])->middleware(['a
 Route::post('upload_product',[AdminController::class,'upload_product'])->middleware(['auth','admin']);
 
 Route::get('view_product',[AdminController::class,'view_product'])->middleware(['auth','admin']);
+
+Route::get('delete_product/{id}',[AdminController::class,'delete_product'])->middleware(['auth','admin']);
+
+
+Route::get('update_product/{id}',[AdminController::class,'update_product'])->middleware(['auth','admin']);
+
+Route::post('edit_product/{id}',[AdminController::class,'edit_product'])->middleware(['auth','admin']);
+
+Route::get('product_search',[AdminController::class,'product_search'])->middleware(['auth','admin']);
+
+Route::get('product_details/{id}',[HomeController::class,'product_details']);
+
+Route::get('add_cart/{id}',[HomeController::class,'add_cart'])->middleware(['auth', 'verified']);
+
+ 
+Route::get('mycart', [HomeController::class, 'mycart'])->middleware(['auth', 'verified']);
+
+
+
 
 Route::get('reviewer/dashboard',[HomeController2::class,'index']);

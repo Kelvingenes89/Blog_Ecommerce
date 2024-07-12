@@ -54,6 +54,14 @@
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
+
+
+            <form action="{{url('product_search')}}" method="get">
+
+              @csrf
+              <input type="search" name="search">
+              <input type="submit" class="btn btn-secondary" value="Search"> 
+            </form>
             
             <div>
              <table>
@@ -65,6 +73,8 @@
                 <th>Price</th>
                  <th>Quantity</th>
                  <th>Image</th>
+                 <th>Edit</th>
+                 <th>Delete</th>
               </tr>
               @foreach($product as $products)
                 <tr>
@@ -76,6 +86,13 @@
                      
                     <td>
                         <img height="100" width="100" src="{{ asset('products/' . $products->image) }}" alt="Product Image">
+                    </td>
+                    <td>
+                      <a class="btn btn-success" href="{{url('update_product',$products->id)}}">Edit</a>
+                  </td>
+
+                    <td>
+                        <a class="btn btn-danger" href="{{url('delete_product',$products->id)}}">Delete</a>
                     </td>
 
                 </tr>
@@ -94,7 +111,7 @@
 
 
             </div>
-            {{$product->links()}}
+          
 
 
 
@@ -105,6 +122,7 @@
       </div>
     </div>
     <!-- JavaScript files-->
+    @include('admin.js')
     <script src=" {{ asset('/admincss/vendor/jquery/jquery.min.js') }}"></script>
     <script src=" {{ asset('/admincss/vendor/popper.js/umd/popper.min.js') }}"> </script>
     <script src=" {{ asset('/admincss/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -113,5 +131,6 @@
     <script src=" {{ asset('/admincss/vendor/jquery-validation/jquery.validate.min.js') }}"></script>
     <script src=" {{ asset('/admincss/js/charts-home.js') }}"></script>
     <script src=" {{ asset('/admincss/js/front.js') }}"></script>
+
   </body>
 </html> 
